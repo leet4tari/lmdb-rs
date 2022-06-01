@@ -14,6 +14,16 @@ fn main() {
         config.flag("-DMDB_FDATASYNC=fsync");
     }
 
+    if target.contains("apple-darwin") {
+        if target.contains("x86_64") {
+            config.flag("--target=x86_64-apple-macos10.12");
+        }
+
+        if target.contains("aarch64") {
+            config.flag("--target=arm64-apple-macos11");
+        }
+    }
+
     if let Ok(target_arch) = env::var("LMDB_TARGET") {
         //config.flag_if_supported(&format!("-march={}", target_arch));
         config.flag(&format!("--target={}", target_arch));
