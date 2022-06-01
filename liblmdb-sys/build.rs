@@ -7,8 +7,8 @@ fn main() {
     config.file("mdb/libraries/liblmdb/mdb.c")
           .file("mdb/libraries/liblmdb/midl.c");
     config.opt_level(2);
-    config.flag("-Wno-unused-parameter");
-    config.flag("-Wno-implicit-fallthrough");
+    config.flag_if_supported("-Wno-unused-parameter");
+    config.flag_if_supported("-Wno-implicit-fallthrough");
 
     if target.contains("dragonfly") {
         config.flag("-DMDB_DSYNC=O_SYNC");
